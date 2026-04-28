@@ -1,8 +1,5 @@
 # Formal Verification of the Futurama Theorem
 
-**CS5232 — Specification and Verification of Systems (Spring 2026)**
-**Author:** Yilun Li (A0182429Y)
-
 ## Overview
 
 A machine-checked formalisation of the **Futurama Theorem** (Keeler's Theorem) in Lean 4 using Mathlib. The theorem states that any permutation on a finite set can be undone by a sequence of distinct transpositions, each involving one of two auxiliary elements.
