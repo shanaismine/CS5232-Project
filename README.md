@@ -17,9 +17,8 @@ A machine-checked formalisation of the **Futurama Theorem** (Keeler's Theorem) i
 ## Building
 
 ```bash
-git clone <repo-url>
-cd <repo>/Lean
-elan override set leanprover/lean4:v4.23.0
+git clone https://github.com/shanaismine/CS5232-Project
+cd Lean
 lake build
 ```
 
