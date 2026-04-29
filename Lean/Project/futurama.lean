@@ -297,6 +297,7 @@ theorem keelerSeq_nodup (l : List α) (x y : α)
       simp only [List.mem_cons] at hy ⊢; tauto
     have ih := keelerSeq_nodup (a :: c :: tail) x y
                  hnd_short hlen_short hx_short hy_short hxy
+
     have hb_short : b ∉ (a :: c :: tail) := by
       simp only [List.nodup_cons, List.mem_cons] at hnd ⊢; tauto
     -- keelerSeq(long) inserts swap x b into keelerSeq(short)
@@ -344,8 +345,13 @@ theorem keelerSeq_nodup (l : List α) (x y : α)
       · exact swap_ne_swap_xy x y b a hxy hby hbx
 
     rw [h_long, List.nodup_cons]
-    exact ⟨by simp only [List.mem_cons, not_or]; exact ⟨Ne.symm hba_swap, (List.nodup_cons.mp ih').1⟩,
-           by rw [List.nodup_cons]; exact ⟨hb_tail, (List.nodup_cons.mp ih').2⟩⟩
+    have h1 : swap x a ∉ swap x b :: seqTail := by
+      simp only [List.mem_cons, not_or]
+      exact ⟨hba_swap.symm, (List.nodup_cons.mp ih').1⟩
+    have h2 : (swap x b :: seqTail).Nodup := by
+      rw [List.nodup_cons]
+      exact ⟨hb_tail, (List.nodup_cons.mp ih').2⟩
+    exact ⟨h1, h2⟩
   termination_by l.length
 
 
